@@ -21,87 +21,85 @@ You can use bullet points and lists, or full paragraphs, or a combo, whichever i
 ### Catalog (Milestone 1)
 > What will your catalog website be about? (1 sentence)
 
-TODO: catalog topic
-
+My catalog website will be about people. It will allow people to add themselves and input certain things about themself such as dob, personality type, field of study, etc.
 
 ### Audience (Milestone 1)
 > Briefly explain your site's audience. Your audience should be specific, but not arbitrarily specific. (1 sentence)
 > Justify why this audience is a **cohesive** group. (1-2 sentences)
 
-TODO: site audience
+It will be open to Cornell students.
 
-TODO: why is this a _cohesive_ audience?
-
+It is _cohesive_ because they are all students at Cornell, and no one outside of this school may enter information.
 
 ### Audience Goals (Milestone 1)
 > Document your audience's goals for using this catalog website.
 > List each goal below. There is no specific number of goals required for this, but you need enough to do the job (Hint: It's more than 1. But probably not more than 3.)
 > **Hint:** Users will be able to view all entries in the catalog and insert new entries into the catalog. The audience's goals should probably relate to these activities.
 
-Goal 1: TODO: brief title
+Goal 1: Allow Cornellian's to add themselves to the catalog
 
 - **Design Ideas and Choices** _How will you meet those goals in your design?_
-  - TODO: design ideas (1-2 sentences)
+  - The website will simply show the database, with a sticky that allows them to add themselves to the database.
+  - The sticky will have a form that allows them to input their information, and ensure they aren't adding themselves twice
 - **Rationale & Additional Notes** _Justify your decisions; additional notes._
-  - TODO: rationale  (1-2 sentences)
+  - This is the most basic functionality of the website, and it is the most important. It is the reason the website exists.
 
-Goal 2: TODO: brief title
+Goal 2: Allow Cornellian's to view all entries in the catalog and search for specific entries
 
 - **Design Ideas and Choices** _How will you meet those goals in your design?_
-  - TODO: design ideas (1-2 sentences)
+  - The database will be publicly available to view, and the search will allow them to search for specific entries.
+
 - **Rationale & Additional Notes** _Justify your decisions; additional notes._
-  - TODO: rationale (1-2 sentences)
+  - This is the second most important functionality of the website. It allows the user to view all entries in the catalog, and search for specific entries.
 
-Goal 3: TODO: brief title
+Goal 3: Identify and Recommend Relationships
 
-TODO: design ideas and rationale
-
-
-TODO: add as many goals as needed
-
+- This is a stretch goal, but may be interesting. using a matching algorithm, it will recommend people to the user based on their personality type, field of study, etc.
 
 ### Audience Device (Milestone 1)
 > How will your audience access this website? From a narrow (phone) or wide (laptop) device?
 > Justify your decision. (1 sentence)
 
-TODO: audience device
+On a narrow phone screen
 
-TODO: audience device justification
-
+- This is the most common device that people use, and it is the most convenient for Cornellians to use.
 
 ### Persona (Milestone 1)
 > Use the goals you identified above to develop a persona of your site's audience.
 > Your persona must have a name and a face. The face can be a photo of a face or a drawing, etc.
 
-TODO: persona's face
+![Source: Thispersondoesnotexist.com](sarah%20borgus.jpg)
+*source: thispersondoesnotexist.com*
 
-TODO: persona name
+## Sarah Borgus
 
 **Factors that Influence Behavior:**
 
-TODO: summary of the persona's factors that influence their behavior (1-2 bullet points)
+- Sarah is a Cornell junior studying Bio
+- She comes from a ridiculously wealthy family and is very spoiled, and not well adjusted.
 
 **Goals:**
 
-TODO: summary of persona's goals (1-2 bullet points)
+- Sarah wants to compare herself to peers and see how much better she is than them.
+- Sarah actually wants to make real friends
 
 **Obstacles:**
 
-TODO: summary of persona's obstacles (1-2 bullet points)
+- Her obstacles are that no one is as good as her, and she is very insecure about this.
+- Also, no one really likes her, which she does not appreciate. She has considered buying friends, but wants to find other options.
 
 **Desires:**
 
-TODO: summary of persona's desires (1-2 bullet points)
-
+- She wants to make friends
+- She wants to find people who are as rich as her and better than her
 
 ### Catalog Data (Milestone 1)
 > Using your persona, identify the data you need to include in the catalog for your site's audience.
 > Justify why this data aligns with your persona's goals. (1 sentence)
 
-TODO: list the data your persona will need to effectively use the catalog
+- Sarah will need to know her own name, have a netid, and optionally include their major, their personality type.
 
-TODO: Justify why this data aids the persona with their goals.
-
+- This data aligns with her goals because she wants to compare herself to peers and see how much better she is than them.
 
 
 ### Site Design (Milestone 1)
@@ -116,14 +114,12 @@ TODO: Justify why this data aids the persona with their goals.
 > Provide a brief explanation _underneath_ each sketch. (1 sentence)
 > **Refer to your persona by name in each explanation.**
 
-TODO: sketch(es) + explanation
-
-
+![Alt text](web-sketch.png)
+![Alt text](web-sketch-2.png)
 ### Catalog Design Patterns (Milestone 1)
 > Explain how you used design patterns for online catalogs in your site's design. (1-2 sentences)
 
-TODO: design pattern explanation
-
+I used the sticky header design pattern, which allows the user to add themselves to the database. I also used the search bar design pattern, which allows the user to search for specific entries in the database.
 
 ## Implementation Plan (Milestone 1, Milestone 2)
 
@@ -134,11 +130,12 @@ TODO: design pattern explanation
 > A bulleted list is probably the simplest way to do this.
 > Make sure you include constraints for each field.
 
-Table: TODO: table name
+Table: cornellians
 
-- field1: TYPE {constraints...},
-- field2...
-- TODO: table fields + type + constraints
+- key: int {PK, U, AI, NN}
+- name: STRING {NN}
+- major: STRING {}
+- personality: STRING {}
 
 
 ### Database Query Plan (Milestone 1, Final Submission)
@@ -148,7 +145,7 @@ Table: TODO: table name
 1. All Records (Milestone 1)
 
     ```
-    TODO: query for all records
+    SELECT * FROM cornellians
     ```
 
 2. Insert Record (Final Submission)
