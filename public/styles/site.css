@@ -1,0 +1,61 @@
+html {
+  font-family: sans-serif;
+}
+
+table {
+  /* remove extra space between table cells */
+  border-spacing: 0;
+
+  /* frame the table with a border on top and bottom */
+  border: 2px dotted #000000;
+}
+
+table tr {
+  /* default table background color */
+  background-color: #ffffff;
+}
+
+table tr:nth-child(even) {
+  /* alternate row color */
+  background-color: #eb7171;
+}
+
+/* table headers */
+table th {
+  text-align: left;
+  font-weight: bold;
+
+  /* required for scrolling table header: must specify color of cell */
+  background-color: #ffffff;
+
+  /* line underneath header */
+  border-bottom: 1px solid #000000;
+
+  /* spacing between cells */
+  padding: 10px;
+
+  /* scrolling table header */
+  position: sticky;
+  top: 0px;
+}
+
+/* table cells (not header data) */
+table td {
+  text-align: left;
+  font-weight: normal;
+
+  /* cell border */
+  /* border-bottom: 1px solid #000000; */
+
+  /* spacing between cells */
+  /* padding: 8px; */
+
+  /* spacing between columns */
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* remove spacing between columns on last column */
+table td:last-child {
+  padding-right: 8px;
+}
