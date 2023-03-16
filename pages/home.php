@@ -218,7 +218,6 @@ if (isset($_POST['add-user'])) {
     <h3>Find your classmates:</h3>
 
     <main class="cornnect">
-      <h2><?php echo $title; ?></h2>
 
       <table>
         <tr>

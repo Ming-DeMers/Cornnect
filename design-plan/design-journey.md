@@ -130,12 +130,13 @@ I used the sticky header design pattern, which allows the user to add themselves
 > A bulleted list is probably the simplest way to do this.
 > Make sure you include constraints for each field.
 
-Table: cornellians
+Table: students
 
 - key: int {PK, U, AI, NN}
 - name: STRING {NN}
+- year: INTEGER {NN}
 - major: STRING {}
-- personality: STRING {}
+- clubs: STRING {}
 
 
 ### Database Query Plan (Milestone 1, Final Submission)
@@ -158,39 +159,50 @@ Table: cornellians
 ### From Validation (Milestone 2)
 > Plan the validation criteria for each piece of form data.
 
-- TODO: form data name
-  - TODO: form data criteria
-- TODO: form data name
-  - TODO: form data criteria
-- TODO: form data name
-  - TODO: form data criteria
-- ...
+- Name
+ - required, text
+- Netid
+  - required, text
+- Year
+  - required, radio
+- Major
+  - optional, text
+- Clubs
+  - optional, text
+
 
 
 ### Form Planning (Milestone 2)
 > Plan your form validation using **pseudocode**.
 
-```
-TODO: Form validation pseudocode
-```
+
+check if name is empty
+  if yes, show error message
+  and add to sticky
+  if no, continue
+
+check if netid is empty
+  if yes, show error message
+  and add to sticky
+  if no, continue
+
+check if year is empty
+  if yes, show error message
+  and add radio to sticky
+  if no, continue
 
 
 ### Form Test Data (Milestone 2)
-> For each piece of form data, provide samples of valid and invalid data for testing.
 
 **Valid Test Data:**
-
-- TODO: form data name: "TODO: sample valid data"
-- TODO: form data name: "TODO: sample valid data"
-- TODO: form data name: "TODO: sample valid data"
-- ...
+- Name: "Sarah Borgus"
+- Netid: "sb342"
+- Year: one selection from radio button
 
 **Invalid Test Data:**
-
-- TODO: form data name: "TODO: sample invalid data"
-- TODO: form data name: "TODO: sample invalid data"
-- TODO: form data name: "TODO: sample invalid data"
-- ...
+- Name: ""
+- Netid: "<?php echo "this website sucks! ?>"
+- Year: no selection made
 
 
 ## Complete & Polished Website (Final Submission)
