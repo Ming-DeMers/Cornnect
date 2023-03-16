@@ -1,5 +1,31 @@
 html {
-  font-family: sans-serif;
+  font-family: serif;
+  background-color: bisque;
+}
+
+/* would like to add bevel buttons lol */
+
+#menu-bar {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  margin-left: 10px;
+}
+
+#menu-bar button {
+  font-size: 16px;
+  margin: 15px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 2px solid #333;
+  background-color: #eee;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#menu-bar button:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #333;
 }
 
 table {
@@ -58,4 +84,23 @@ table td {
 /* remove spacing between columns on last column */
 table td:last-child {
   padding-right: 8px;
+}
+
+form {
+  display: inline-block;
+}
+
+form div {
+  margin: 6px 0;
+}
+
+.feedback {
+  color: #dc341e;
+  font-weight: bold;
+  font-family: serif;
+  margin-bottom: -0.25em !important;
+}
+
+.hidden {
+  display: none;
 }
