@@ -60,9 +60,9 @@ Goal 3: Identify and Recommend Relationships
 > How will your audience access this website? From a narrow (phone) or wide (laptop) device?
 > Justify your decision. (1 sentence)
 
-On a narrow phone screen
+On a wide screen
 
-- This is the most common device that people use, and it is the most convenient for Cornellians to use.
+- This site is inspired by old-schools sites, which would've been accessed by desktops.
 
 ### Persona (Milestone 1)
 > Use the goals you identified above to develop a persona of your site's audience.

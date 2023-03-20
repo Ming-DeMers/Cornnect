@@ -1,114 +1,13 @@
-html {
-  font-family: serif;
-  background-color: bisque;
-}
-
-/* would like to add bevel buttons lol */
-
-#menu-bar {
-  display: flex;
-  flex-direction: row;
-  padding: 15px;
-  margin-left: 10px;
-}
-
-#menu-bar button {
-  font-size: 16px;
-  margin: 15px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: 2px solid #333;
-  background-color: #eee;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-#menu-bar button:hover {
-  cursor: pointer;
-  color: #ffffff;
-  background-color: #333;
-}
-
-table {
-  /* remove extra space between table cells */
-  border-spacing: 0;
-
-  /* frame the table with a border on top and bottom */
-  border: 2px dotted #000000;
-}
-
-table tr {
-  /* default table background color */
-  background-color: #ffffff;
-}
-
-table tr:nth-child(even) {
-  /* alternate row color */
-  background-color: #eb7171;
-}
-
-/* table headers */
-table th {
-  text-align: left;
-  font-weight: bold;
-
-  /* required for scrolling table header: must specify color of cell */
-  background-color: #ffffff;
-
-  /* line underneath header */
-  border-bottom: 1px solid #000000;
-
-  /* spacing between cells */
-  padding: 10px;
-
-  /* scrolling table header */
-  position: sticky;
-  top: 0px;
-}
-
-/* table cells (not header data) */
-table td {
-  text-align: left;
-  font-weight: normal;
-
-  /* cell border */
-  /* border-bottom: 1px solid #000000; */
-
-  /* spacing between cells */
-  /* padding: 8px; */
-
-  /* spacing between columns */
-  padding-left: 8px;
-  padding-right: 8px;
-}
-
-/* remove spacing between columns on last column */
-table td:last-child {
-  padding-right: 8px;
-}
-
-form {
-  display: inline-block;
-}
-
-form div {
-  margin: 6px 0;
-}
-
-.feedback {
-  color: #dc341e;
-  font-weight: bold;
-  font-family: serif;
-  margin-bottom: -0.25em !important;
-}
-
-.hidden {
-  display: none;
-}
-
 body {
-  background-color: #f5e5c5;
+  font-family: serif;
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: 'Courier New', Courier, monospace;
-  color: #444;}
+  color: #444;
+  background-color: #e9d358;
+}
 
 h1,
 h2,
@@ -153,10 +52,125 @@ a:hover {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: #f5e5c5;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+/* would like to add bevel buttons lol */
+
+#menu-bar {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  margin-left: 10px;
+}
+
+#menu-bar button {
+  font-size: 16px;
+  margin: 15px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 2px solid #a53724;
+  background-color: #ece7ca;
+  box-shadow: 2px 2px 4px #a53724;
+}
+
+#menu-bar button:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #a53724;
+}
+
+.table {
+  background-color: #ece7ca;
+  border: 3px solid #a53724;
+  border-radius: 15px;
+}
+
+.table h3 {
+  margin: 15px;
+  margin-bottom: 0px;
+}
+
+table {
+  border-spacing: 0px;
+  padding: 15px;
+}
+
+
+
+table tr:nth-child(odd) {
+  /* alternate row color */
+}
+
+table th {
+  /* header data */
+  text-align: left;
+  font-weight: bold;
+  background-color: #a53724;
+  color: #f5e5c5;
+  text-shadow: 1px 1px #444;
+  margin: 0px;
+  padding: 4px;
+}
+
+/* table cells (not header data) */
+table td {
+  text-align: left;
+  font-weight: normal;
+
+  /* cell border */
+  /* border-bottom: 1px solid #000000; */
+
+  /* spacing between cells */
+  /* padding: 8px; */
+
+  /* spacing between columns */
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+
+
+form {
+  display: inline-block;
+}
+
+form div {
+  margin: 6px 0;
+}
+
+.add-form {
+  background-color: #ece7ca;
+  border-radius: 15px;
+  border: 3px solid #a53724;
+  margin: 30px;
+  padding: 30px
+}
+
+.feedback {
+  color: #dc341e;
+  font-weight: bold;
+  font-family: serif;
+  margin-bottom: -0.25em !important;
+}
+
+.add-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.add-button input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid #a53724;
+  background-color: #ece7ca;
+}
+
+.add-button input:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #a53724;
+}
+
+.hidden {
+  display: none;
 }

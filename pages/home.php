@@ -21,8 +21,8 @@ const YEAR = array(
 // default page state.
 $show_confirmation = False;
 if ($form_valid == False) {
-  $show_form = True;
-  $show_db = False;
+  $show_form = False;
+  $show_db = True;
 }
 
 
@@ -161,61 +161,56 @@ if (isset($_POST['add-user'])) {
 
 
   <?php if (!$show_confirmation && $show_form) { ?>
-    <section>
-      <h2>Add yourself!</h2>
+    <section><div class="add-form">
 
-      <p>Help other classmates find and connect with you!</p>
-
-      <form method="post" action="/" novalidate>
-
-        <p class="feedback <?php echo $form_feedback_classes['name']; ?>">Please provide your name.</p>
-        <div class="label-input">
-          <label for="name_field">Your Name:</label>
-          <input id="name_field" type="text" name="name" value="<?php echo $sticky_values['name']; ?>">
-        </div>
-
-        <p class="feedback <?php echo $form_feedback_classes['netid']; ?>">Please provide your netID</p>
-        <div class="label-input">
-          <label for="netid_field">netID:</label>
-          <input id="netid_field" type="text" name="netid" value="<?php echo $sticky_values['netid']; ?>">
-        </div>
-
-        <p class="feedback <?php echo $form_feedback_classes['year']; ?>">Please select your year.</p>
-        <div class="form-group label-input" role="group" aria-labelledby="year_head">
-          <div id="year_head">Year:</div>
-          <div>
+        <h2>Add yourself!</h2>
+        <p>Help other classmates find and connect with you!</p>
+        <form method="post" action="/" novalidate>
+          <p class="feedback <?php echo $form_feedback_classes['name']; ?>">Please provide your name.</p>
+          <div class="label-input">
+            <label for="name_field">Your Name:</label>
+            <input id="name_field" type="text" name="name" value="<?php echo $sticky_values['name']; ?>">
+          </div>
+          <p class="feedback <?php echo $form_feedback_classes['netid']; ?>">Please provide your netID</p>
+          <div class="label-input">
+            <label for="netid_field">netID:</label>
+            <input id="netid_field" type="text" name="netid" value="<?php echo $sticky_values['netid']; ?>">
+          </div>
+          <p class="feedback <?php echo $form_feedback_classes['year']; ?>">Please select your year.</p>
+          <div class="form-group label-input" role="group" aria-labelledby="year_head">
+            <div id="year_head">Year:</div>
             <div>
-              <input type="radio" id="first_input" name="year" value="2026">
-              <label for="roses_input">First-Year</label>
-            </div>
-            <div>
-              <input type="radio" id="soph_input" name="year" value="2025">
-              <label for=" soph_input">Sophomore</label>
-            </div>
-            <div>
-              <input type="radio" id="junior_input" name="year" value="2024">
-              <label for="junior_input">Junior</label>
-            </div>
-            <div>
-              <input type="radio" id="senior_input" name="year" value="2023">
-              <label for="senior_input">Senior</label>
+              <div>
+                <input type="radio" id="first_input" name="year" value="2026">
+                <label for="roses_input">First-Year</label>
+              </div>
+              <div>
+                <input type="radio" id="soph_input" name="year" value="2025">
+                <label for=" soph_input">Sophomore</label>
+              </div>
+              <div>
+                <input type="radio" id="junior_input" name="year" value="2024">
+                <label for="junior_input">Junior</label>
+              </div>
+              <div>
+                <input type="radio" id="senior_input" name="year" value="2023">
+                <label for="senior_input">Senior</label>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="label-input">
-          <label for="major_field">Major:</label>
-          <input id="major_field" type="text" name="major" value="<?php echo $sticky_values['major']; ?>">
-        </div>
-        <div class="label-input">
-          <label for="club_field">Clubs and Activities:</label>
-          <input id="club_field" type="text" name="club" value="<?php echo $sticky_values['club']; ?>">
-        </div>
-
-        <div class="align-right">
-          <input type="submit" value="Add me!" name="add-user">
-        </div>
-      </form>
+          <div class="label-input">
+            <label for="major_field">Major:</label>
+            <input id="major_field" type="text" name="major" value="<?php echo $sticky_values['major']; ?>">
+          </div>
+          <div class="label-input">
+            <label for="club_field">Clubs and Activities:</label>
+            <input id="club_field" type="text" name="club" value="<?php echo $sticky_values['club']; ?>">
+          </div>
+          <div class="add-button">
+            <input type="submit" value="Add me!" name="add-user">
+          </div>
+        </form>
+    </div>
     </section>
   <?php } ?>
 
@@ -225,39 +220,37 @@ if (isset($_POST['add-user'])) {
       <p>Thank you <?php echo htmlspecialchars($form_values['name']); ?>. Classmates can now find you on the World Wide Web! Hopefully you can find other <?php echo htmlspecialchars($form_values['year']); ?>s in similar majors/clubs! </p>
 
       <?php $show_form = FALSE ?>
-      <button>
-        <p><a href="/">See the database</a>.</p>
-      </button>
     </section>
   <?php } ?>
 
   <?php if ($show_db) { ?>
-    <h3>Find your classmates:</h3>
+    <div class="table">
+      <h3>Find your classmates:</h3>
 
-    <main class="cornnect">
+      <main class="cornnect">
 
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>NetID</th>
-          <th>Year</th>
-          <th>Major</th>
-          <th>Clubs</th>
-        </tr>
-        <?php
-        // write a table row for each record
-        foreach ($records as $record) { ?>
+        <table>
           <tr>
-            <td><?php echo htmlspecialchars($record['name']); ?></td>
-            <td><?php echo htmlspecialchars($record['netid']); ?></td>
-            <td><?php echo htmlspecialchars(YEAR[$record['year']]); ?></td>
-            <td><?php echo htmlspecialchars($record["major"]); ?></td>
-            <td><?php echo htmlspecialchars($record["club"]); ?></td>
+            <th>Name</th>
+            <th>NetID</th>
+            <th>Year</th>
+            <th>Major</th>
+            <th>Clubs</th>
           </tr>
-        <?php } ?>
-      </table>
-
-    <?php } ?>
+          <?php
+          // write a table row for each record
+          foreach ($records as $record) { ?>
+            <tr>
+              <td><?php echo htmlspecialchars($record['name']); ?></td>
+              <td><?php echo htmlspecialchars($record['netid']); ?></td>
+              <td><?php echo htmlspecialchars(YEAR[$record['year']]); ?></td>
+              <td><?php echo htmlspecialchars($record["major"]); ?></td>
+              <td><?php echo htmlspecialchars($record["club"]); ?></td>
+            </tr>
+          <?php } ?>
+        </table>
+    </div>
+  <?php } ?>
 </body>
 
 </html>
