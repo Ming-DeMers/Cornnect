@@ -21,6 +21,9 @@ const YEAR = array(
 // default page state.
 $show_confirmation = False;
 if ($form_valid == False) {
+  $show_form = True;
+  $show_db = False;
+} else {
   $show_form = False;
   $show_db = True;
 }
@@ -77,16 +80,19 @@ if (isset($_POST['add-user'])) {
   if ($form_values['year'] == NULL) {
     $form_valid = False;
     $form_feedback_classes['year'] = NULL;
+    $retry_form = True;
   }
 
   if ($form_values['name'] == '') {
     $form_valid = False;
     $form_feedback_classes['name'] = '';
+    $retry_form = True;
   }
 
   if ($form_values['netid'] == '') {
     $form_valid = False;
     $form_feedback_classes['netid'] = '';
+    $retry_form = True;
   }
 
   // show confirmation if form is valid, otherwise set sticky values and echo them
@@ -102,8 +108,11 @@ if (isset($_POST['add-user'])) {
         ':club' => $form_values['club']
       )
     );
+    $retry_form = False;
     $show_confirmation = True;
   } else {
+    $retry_form = True;
+
     $sticky_values['name'] = $form_values['name'];
     $sticky_values['netid'] = $form_values['netid'];
     $sticky_values['major'] = $form_values['major'];
@@ -147,21 +156,27 @@ if (isset($_POST['add-user'])) {
 
 
   <?php
-  if (isset($_POST['database'])) {
-    $show_db = true;
-    $show_form = false;
-  }
+  if ($retry_form == TRUE) {
+    $show_db = False;
+    $show_form = True;
+  } else {
+    if (isset($_POST['database'])) {
+      $show_db = true;
+      $show_form = false;
+    }
 
-  if (isset($_POST['form'])) {
-    $show_db = false;
-    $show_form = true;
+    if (isset($_POST['form'])) {
+      $show_db = false;
+      $show_form = true;
+    }
   }
   ?>
 
 
 
   <?php if (!$show_confirmation && $show_form) { ?>
-    <section><div class="add-form">
+    <section>
+      <div class="add-form">
 
         <h2>Add yourself!</h2>
         <p>Help other classmates find and connect with you!</p>
@@ -182,11 +197,11 @@ if (isset($_POST['add-user'])) {
             <div>
               <div>
                 <input type="radio" id="first_input" name="year" value="2026">
-                <label for="roses_input">First-Year</label>
+                <label for="first_input">First-Year</label>
               </div>
               <div>
                 <input type="radio" id="soph_input" name="year" value="2025">
-                <label for=" soph_input">Sophomore</label>
+                <label for="soph_input">Sophomore</label>
               </div>
               <div>
                 <input type="radio" id="junior_input" name="year" value="2024">
@@ -210,17 +225,18 @@ if (isset($_POST['add-user'])) {
             <input type="submit" value="Add me!" name="add-user">
           </div>
         </form>
-    </div>
+      </div>
     </section>
   <?php } ?>
 
   <?php if ($show_confirmation) { ?>
-    <section>
-      <h2>You've Been Added!</h2>
-      <p>Thank you <?php echo htmlspecialchars($form_values['name']); ?>. Classmates can now find you on the World Wide Web! Hopefully you can find other <?php echo htmlspecialchars($form_values['year']); ?>s in similar majors/clubs! </p>
-
-      <?php $show_form = FALSE ?>
-    </section>
+    <div class="confirmation">
+      <section>
+        <h3>You've Been Added!</h3>
+        <p>Thank you <?php echo htmlspecialchars($form_values['name']); ?>. Classmates can now find you on the World Wide Web! Hopefully you can find other <?php echo htmlspecialchars(YEAR[$form_values['year']]); ?>s in similar majors/clubs! </p>
+        <?php $show_form = FALSE ?>
+      </section>
+    </div>
   <?php } ?>
 
   <?php if ($show_db) { ?>
