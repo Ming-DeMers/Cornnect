@@ -69,7 +69,7 @@ On a narrow phone screen
 > Your persona must have a name and a face. The face can be a photo of a face or a drawing, etc.
 
 ![Source: Thispersondoesnotexist.com](sarah%20borgus.jpg)
-*source: thispersondoesnotexist.com*
+_source: thispersondoesnotexist.com_
 
 ## Sarah Borgus
 
@@ -152,15 +152,26 @@ Table: students
 2. Insert Record (Final Submission)
 
     ```
-    TODO: insert query
-    ```
+
+  $result = exec_sql_query(
+    $db,
+    "INSERT INTO cornellians (name, netid, year, major, clubs) VALUES (:name, :netid, :year, :major, :club);",
+    array(
+        ':name' => $form_values['name'],
+        ':netid' => $form_values['netid'],
+        ':year' => $form_values['year'],
+        ':major' => $form_values['major'],
+        ':club' => $form_values['club']
+      )
+
+  ```
 
 
 ### From Validation (Milestone 2)
 > Plan the validation criteria for each piece of form data.
 
 - Name
- - required, text
+- required, text
 - Netid
   - required, text
 - Year
@@ -186,7 +197,7 @@ check if netid is empty
   and add to sticky
   if no, continue
 
-check if year is empty
+check if year is NULL
   if yes, show error message
   and add radio to sticky
   if no, continue
@@ -195,11 +206,13 @@ check if year is empty
 ### Form Test Data (Milestone 2)
 
 **Valid Test Data:**
+
 - Name: "Sarah Borgus"
 - Netid: "sb342"
 - Year: one selection from radio button
 
 **Invalid Test Data:**
+
 - Name: ""
 - Netid: "<?php echo "this website sucks! ?>"
 - Year: no selection made

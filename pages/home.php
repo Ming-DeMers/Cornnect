@@ -3,7 +3,7 @@ $title = 'Cornnect';
 // open database
 $db = open_sqlite_db('secure/site.sqlite');
 // query the table
-$result = exec_sql_query($db, 'SELECT * FROM cornnect;');
+$result = exec_sql_query($db, 'SELECT * FROM cornellians;');
 // get records from query
 $records = $result->fetchAll();
 
@@ -38,8 +38,8 @@ $form_values = array(
   'name' => '',
   'netid' => '',
   'year' => '',
-  'major' => '',
-  'clubs' => ''
+  'major' => NULL,
+  'club' => NULL,
 );
 
 // sticky values
@@ -50,25 +50,33 @@ $sticky_values = array(
   'soph' => '',
   'junior' => '',
   'senior' => '',
-  'major' => '',
-  'clubs' => ''
+  'major' => NULL,
+  'clubs' => NULL
 );
 
 // validates if form was submitted:
 if (isset($_POST['add-user'])) {
+  $form_values['name'] = trim($_POST['name']);
+  $form_values['netid'] = trim($_POST['netid']);
+  $form_values['year'] = trim($_POST['year']);
+  $form_values['major'] = trim($_POST['major']);
+  $form_values['club'] = trim($_POST['club']);
 
-  $form_values['name'] = trim($_POST['name']); // untrusted
-  $form_values['netid'] = trim($_POST['netid']); // untrusted
-  $form_values['year'] = trim($_POST['year']); // untrusted
-  $form_values['major'] = trim($_POST['major']); // untrusted
-  $form_values['clubs'] = trim($_POST['clubs']); // untrusted
+  // make sure major and club are NULL if empty
+  if ($form_values['major'] == '') {
+    $form_values['major'] = NULL;
+  }
+
+  if ($form_values['club'] == '') {
+    $form_values['club'] = NULL;
+  }
 
   $form_valid = True;
 
   // check if one of the years was selected
   if ($form_values['year'] == NULL) {
     $form_valid = False;
-    $form_feedback_classes['year'] = '';
+    $form_feedback_classes['year'] = NULL;
   }
 
   if ($form_values['name'] == '') {
@@ -81,24 +89,33 @@ if (isset($_POST['add-user'])) {
     $form_feedback_classes['netid'] = '';
   }
 
-
   // show confirmation if form is valid, otherwise set sticky values and echo them
   if ($form_valid) {
+    exec_sql_query(
+      $db,
+      "INSERT INTO cornellians (name, netid, year, major, club) VALUES (:name, :netid, :year, :major, :club);",
+      array(
+        ':name' => $form_values['name'],
+        ':netid' => $form_values['netid'],
+        ':year' => $form_values['year'],
+        ':major' => $form_values['major'],
+        ':club' => $form_values['club']
+      )
+    );
     $show_confirmation = True;
   } else {
     $sticky_values['name'] = $form_values['name'];
     $sticky_values['netid'] = $form_values['netid'];
     $sticky_values['major'] = $form_values['major'];
-    $sticky_values['clubs'] = $form_values['clubs'];
+    $sticky_values['club'] = $form_values['club'];
 
-    $sticky_values['first'] = ($form_values['year'] == 'first' ? 'checked' : '');
-    $sticky_values['soph'] = ($form_values['year'] == 'soph' ? 'checked' : '');
-    $sticky_values['junior'] = ($form_values['year'] == 'junior' ? 'checked' : '');
-    $sticky_values['senior'] = ($form_values['year'] == 'senior' ? 'checked' : '');
+    $sticky_values['2026'] = ($form_values['year'] == '2026' ? 'checked' : '');
+    $sticky_values['2025'] = ($form_values['year'] == '2025' ? 'checked' : '');
+    $sticky_values['2024'] = ($form_values['year'] == '2024' ? 'checked' : '');
+    $sticky_values['2023'] = ($form_values['year'] == '2023' ? 'checked' : '');
   }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -168,19 +185,19 @@ if (isset($_POST['add-user'])) {
           <div id="year_head">Year:</div>
           <div>
             <div>
-              <input type="radio" id="first_input" name="year" value="first" <?php echo $sticky_values['first']; ?>>
+              <input type="radio" id="first_input" name="year" value="2026">
               <label for="roses_input">First-Year</label>
             </div>
             <div>
-              <input type="radio" id="soph_input" name="year" value="soph" <?php echo $sticky_values['soph']; ?>>
-              <label for="soph_input">Sophomore</label>
+              <input type="radio" id="soph_input" name="year" value="2025">
+              <label for=" soph_input">Sophomore</label>
             </div>
             <div>
-              <input type="radio" id="junior_input" name="year" value="junior" <?php echo $sticky_values['junior']; ?>>
+              <input type="radio" id="junior_input" name="year" value="2024">
               <label for="junior_input">Junior</label>
             </div>
             <div>
-              <input type="radio" id="senior_input" name="year" value="junior" <?php echo $sticky_values['senior']; ?>>
+              <input type="radio" id="senior_input" name="year" value="2023">
               <label for="senior_input">Senior</label>
             </div>
           </div>
@@ -191,8 +208,8 @@ if (isset($_POST['add-user'])) {
           <input id="major_field" type="text" name="major" value="<?php echo $sticky_values['major']; ?>">
         </div>
         <div class="label-input">
-          <label for="clubs_field">Clubs and Activities:</label>
-          <input id="clubs_field" type="text" name="clubs" value="<?php echo $sticky_values['clubs']; ?>">
+          <label for="club_field">Clubs and Activities:</label>
+          <input id="club_field" type="text" name="club" value="<?php echo $sticky_values['club']; ?>">
         </div>
 
         <div class="align-right">
@@ -235,7 +252,7 @@ if (isset($_POST['add-user'])) {
             <td><?php echo htmlspecialchars($record['netid']); ?></td>
             <td><?php echo htmlspecialchars(YEAR[$record['year']]); ?></td>
             <td><?php echo htmlspecialchars($record["major"]); ?></td>
-            <td><?php echo htmlspecialchars($record["clubs"]); ?></td>
+            <td><?php echo htmlspecialchars($record["club"]); ?></td>
           </tr>
         <?php } ?>
       </table>
