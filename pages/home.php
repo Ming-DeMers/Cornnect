@@ -49,10 +49,11 @@ $form_values = array(
 $sticky_values = array(
   'name' => '',
   'phone' => '',
-  'first' => '',
-  'soph' => '',
-  'junior' => '',
-  'senior' => '',
+  '2026' => '',
+  '2025' => '',
+  '2024' => '',
+  '2023' => '',
+  'year' => NULL,
   'major' => NULL,
   'clubs' => NULL
 );
@@ -196,19 +197,19 @@ if (isset($_POST['add-user'])) {
             <div id="year_head">Year:</div>
             <div>
               <div>
-                <input type="radio" id="first_input" name="year" value="2026">
+                <input type="radio" id="first_input" name="year" value="2026" <?php echo $sticky_values['2026']; ?>>
                 <label for="first_input">First-Year</label>
               </div>
               <div>
-                <input type="radio" id="soph_input" name="year" value="2025">
+                <input type="radio" id="soph_input" name="year" value="2025" <?php echo $sticky_values['2025']; ?>>
                 <label for="soph_input">Sophomore</label>
               </div>
               <div>
-                <input type="radio" id="junior_input" name="year" value="2024">
+                <input type="radio" id="junior_input" name="year" value="2024" <?php echo $sticky_values['2024']; ?>>
                 <label for="junior_input">Junior</label>
               </div>
               <div>
-                <input type="radio" id="senior_input" name="year" value="2023">
+                <input type="radio" id="senior_input" name="year" value="2023" <?php echo $sticky_values['2023']; ?>>
                 <label for="senior_input">Senior</label>
               </div>
             </div>
